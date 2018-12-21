@@ -6,7 +6,7 @@ pipeline {
   }
   environment {
     NPM_TOKEN = credentials('npm-mrmarcsmith')
-    npm_config_registry = '//registry.npmjs.org/:_authToken=' + ${NPM_TOKEN}
+    npm_config_registry = '//registry.npmjs.org/:_authToken=' + "${NPM_TOKEN}"
   }
   stages {
     stage('Test') {
