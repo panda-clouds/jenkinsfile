@@ -6,7 +6,6 @@ pipeline {
   }
   environment {
     NPM_TOKEN = credentials('npm-mrmarcsmith')
-    npm_config_registry = 'https://registry.npmjs.org/:_authToken=' + "${NPM_TOKEN}"
   }
   stages {
     stage('Test') {
@@ -31,6 +30,7 @@ pipeline {
           when { environment name: 'DEPLOY_TO_NPM', value: 'Yes, Deploy' }
 
           steps {
+            sh 'mv .npmrc-deploy .npmrc'
             sh 'npm publish --access=public'
           }
         }
